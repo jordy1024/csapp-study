@@ -28,7 +28,32 @@ unsigned char | xx| xx
 [root@jordy ~]#  uname -r
 3.10.0-957.21.3.el7.x86_64
 ```
+[root@jordy ~]# vim /usr/include/limits.h
+```
+ 86 /* Minimum and maximum values a `signed long int' can hold.  */
+ 87 #  if __WORDSIZE == 64
+ 88 #   define LONG_MAX 9223372036854775807L
+ 89 #  else
+ 90 #   define LONG_MAX 2147483647L
+ 91 #  endif
+ 92 #  define LONG_MIN  (-LONG_MAX - 1L)
+ 93 
+ 94 /* Maximum value an `unsigned long int' can hold.  (Minimum is 0.)  */
+ 95 #  if __WORDSIZE == 64
+ 96 #   define ULONG_MAX    18446744073709551615UL
+ 97 #  else
+ 98 #   define ULONG_MAX    4294967295UL
+ 99 #  endif
+```
+```
+#include<stdio.h>
+#include<limits.h>
+void main(){
+    printf("%lu,%lu\n",LONG_MIN,ULONG_MAX);
 
+    printf("%ld,%ld\n",LONG_MIN,LONG_MAX);
+}
+```
 ## 2.2整数表示
 
 ## 2.3整数运算
