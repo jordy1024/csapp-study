@@ -150,7 +150,80 @@ C语言中包含头文件的一行程序，但计算机才不关心这是C语言
 [root@jordy ~]# ./hello
 hello world 
 ```    
-嗯，这一切看起来很简单呀，用一个-o参数，一步就搞定了。但真相真是如此吗？欲知真相如何，且听下面分解，^_^。      
+嗯，这一切看起来很简单呀，用一个-o参数，一步就搞定了。但真相真是如此吗？欲知真相如何，且听下面分解，^_^。 
+gcc --help 
+- Preprocess  
+-E                       Preprocess only; do not compile, assemble or link
+gcc -E  hello.c -o hello.i
+```
+  1 # 1 "hello.c"
+  2 # 1 "<built-in>"
+  3 # 1 "<command-line>"
+  4 # 1 "/usr/include/stdc-predef.h" 1 3 4
+  5 # 1 "<command-line>" 2
+  6 # 1 "hello.c"
+  7 # 1 "/usr/include/stdio.h" 1 3 4
+  8 # 27 "/usr/include/stdio.h" 3 4
+  9 # 1 "/usr/include/features.h" 1 3 4
+ 10 # 375 "/usr/include/features.h" 3 4
+ 11 # 1 "/usr/include/sys/cdefs.h" 1 3 4
+ 12 # 392 "/usr/include/sys/cdefs.h" 3 4
+ 13 # 1 "/usr/include/bits/wordsize.h" 1 3 4
+ 14 # 393 "/usr/include/sys/cdefs.h" 2 3 4
+ 15 # 376 "/usr/include/features.h" 2 3 4
+ 16 # 399 "/usr/include/features.h" 3 4
+ 17 # 1 "/usr/include/gnu/stubs.h" 1 3 4
+ 此处省略800多行………………
+ 837 # 2 "hello.c" 2
+ 838 int main(void){
+ 839   printf("hello world\n");
+ 840 }
+
+```
+- compile   
+gcc -S  hello.c -o hello.s
+```
+1     .file   "hello.c"
+  2     .section    .rodata
+  3 .LC0:
+  4     .string "hello world"
+  5     .text
+  6     .globl  main
+  7     .type   main, @function
+  8 main:
+  9 .LFB0:
+ 10     .cfi_startproc
+ 11     pushq   %rbp
+ 12     .cfi_def_cfa_offset 16
+ 13     .cfi_offset 6, -16
+ 14     movq    %rsp, %rbp
+ 15     .cfi_def_cfa_register 6
+ 16     movl    $.LC0, %edi
+ 17     call    puts
+ 18     popq    %rbp
+ 19     .cfi_def_cfa 7, 8
+ 20     ret
+ 21     .cfi_endproc
+ 22 .LFE0:
+ 23     .size   main, .-main
+ 24     .ident  "GCC: (GNU) 4.8.5 20150623 (Red Hat 4.8.5-39)"
+ 25     .section    .note.GNU-stack,"",@progbits
+```
+- assemble  
+-c                       Compile and assemble, but do not link
+```
+-c选项表示编译、汇编指定的源文件（也就是编译源文件），但是不进行链接。使用-c选项可以将每一个源文件编译成对应的目标文件
+目标文件是一种中间文件或者临时文件，如果不设置该选项，gcc 一般不会保留目标文件，可执行文件生成完成后就自动删除了。
+目前我们的源文件仅仅就一个，hello.c。所以生成的目标文件也仅仅就一个hello.o，如果一个项目非常庞大，在这一步就会生成无数的.o文件
+```
+- link
+通过汇编阶段我们生成了n个源文件对应的n个.o目标文件，接下来让想让这n个程序真正组合起来，然后通过统一的入口main()函数执行。   
+那么我们就需要将这n个.o文件链接起来
+
+```
+gcc -o hello hello.o
+```
+
 
                 
 
