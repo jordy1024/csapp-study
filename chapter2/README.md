@@ -22,13 +22,16 @@ unsigned char | xx| xx
 long |-9 223 372 036 854 775 808 | 9 223 372 036 854 775 807    
 unsigned long | 0 | 18 446 744 073 709 551 615     
 
+
+我们看到在64位系统上，无符号的long的最大值是18 446 744 073 709 551 615 ，即1844亿亿 
+
 下面我们来测试一个小例子
 ```
 #include<stdio.h>
 #include<limits.h>
 void main(){
-    unsigned long long a = 200 * 300 * 400 * 500;
-    printf("%llu\n",a);
+    unsigned  long a = 200 * 300 * 400 * 500;// 12 000 000 000（120亿）
+    printf("%lu\n",a);
 }    
 
 [root@jordy ~]# gcc -o /tmp/limit /tmp/limit.c 
@@ -40,9 +43,8 @@ void main(){
 [root@jordy ~]# /tmp/limit 
 18446744072824649728
 
-
 ```
-
+为什么会这样？？ 
 
 ## 2.1信息存储
 ### 2.1.2 字（word）
