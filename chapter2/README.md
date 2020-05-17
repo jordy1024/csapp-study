@@ -22,6 +22,26 @@ unsigned char | xx| xx
 long |-9 223 372 036 854 775 808 | 9 223 372 036 854 775 807    
 unsigned long | 0 | 18 446 744 073 709 551 615     
 
+下面我们来测试一个小例子
+```
+#include<stdio.h>
+#include<limits.h>
+void main(){
+    unsigned long long a = 200 * 300 * 400 * 500;
+    printf("%llu\n",a);
+}    
+
+[root@jordy ~]# gcc -o /tmp/limit /tmp/limit.c 
+/tmp/limit.c: In function ‘main’:
+/tmp/limit.c:4:42: warning: integer overflow in expression [-Woverflow]
+   unsigned long long a = 200 * 300 * 400 * 500;
+                                          ^
+[root@jordy ~]# 
+[root@jordy ~]# /tmp/limit 
+18446744072824649728
+
+
+```
 
 
 ## 2.1信息存储
