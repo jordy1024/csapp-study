@@ -150,8 +150,70 @@ C语言中包含头文件的一行程序，但计算机才不关心这是C语言
 [root@jordy ~]# ./hello
 hello world 
 ```    
-嗯，这一切看起来很简单呀，用一个-o参数，一步就搞定了。但真相真是如此吗？欲知真相如何，且听下面分解，^_^。      
-首先来简单的学习下gcc的帮助文档：gcc --help     
+嗯，这一切看起来很简单呀，用一个-o参数，一步就搞定了。但真相真是如此吗？其实看似简单的背后，包含了好几个连续的步骤，      
+人类将这几个步骤简单的划分为了4步，并对每个步骤进行了命名，它们分别是：预处理（Preprocess）、编译（compile）、汇编（assemble）、链接（link）。   
+首先让我们来简单了解下编译器gcc的使用帮助文档：    
+```
+[root@jordy ~]# gcc --help
+Usage: gcc [options] file...
+Options:
+  -pass-exit-codes         Exit with highest error code from a phase
+  --help                   Display this information
+  --target-help            Display target specific command line options
+  --help={common|optimizers|params|target|warnings|[^]{joined|separate|undocumented}}[,...]
+                           Display specific types of command line options
+  (Use '-v --help' to display command line options of sub-processes)
+  --version                Display compiler version information
+  -dumpspecs               Display all of the built in spec strings
+  -dumpversion             Display the version of the compiler
+  -dumpmachine             Display the compiler's target processor
+  -print-search-dirs       Display the directories in the compiler's search path
+  -print-libgcc-file-name  Display the name of the compiler's companion library
+  -print-file-name=<lib>   Display the full path to library <lib>
+  -print-prog-name=<prog>  Display the full path to compiler component <prog>
+  -print-multiarch         Display the target's normalized GNU triplet, used as
+                           a component in the library path
+  -print-multi-directory   Display the root directory for versions of libgcc
+  -print-multi-lib         Display the mapping between command line options and
+                           multiple library search directories
+  -print-multi-os-directory Display the relative path to OS libraries
+  -print-sysroot           Display the target libraries directory
+  -print-sysroot-headers-suffix Display the sysroot suffix used to find headers
+  -Wa,<options>            Pass comma-separated <options> on to the assembler
+  -Wp,<options>            Pass comma-separated <options> on to the preprocessor
+  -Wl,<options>            Pass comma-separated <options> on to the linker
+  -Xassembler <arg>        Pass <arg> on to the assembler
+  -Xpreprocessor <arg>     Pass <arg> on to the preprocessor
+  -Xlinker <arg>           Pass <arg> on to the linker
+  -save-temps              Do not delete intermediate files
+  -save-temps=<arg>        Do not delete intermediate files
+  -no-canonical-prefixes   Do not canonicalize paths when building relative
+                           prefixes to other gcc components
+  -pipe                    Use pipes rather than intermediate files
+  -time                    Time the execution of each subprocess
+  -specs=<file>            Override built-in specs with the contents of <file>
+  -std=<standard>          Assume that the input sources are for <standard>
+  --sysroot=<directory>    Use <directory> as the root directory for headers
+                           and libraries
+  -B <directory>           Add <directory> to the compiler's search paths
+  -v                       Display the programs invoked by the compiler
+  -###                     Like -v but options quoted and commands not executed
+  -E                       Preprocess only; do not compile, assemble or link
+  -S                       Compile only; do not assemble or link
+  -c                       Compile and assemble, but do not link
+  -o <file>                Place the output into <file>
+  -pie                     Create a position independent executable
+  -shared                  Create a shared library
+  -x <language>            Specify the language of the following input files
+                           Permissible languages include: c c++ assembler none
+                           'none' means revert to the default behavior of
+                           guessing the language based on the file's extension
+
+Options starting with -g, -f, -m, -O, -W, or --param are automatically
+ passed on to the various sub-processes invoked by gcc.  In order to pass
+ other options on to these processes the -W<letter> options must be used.
+
+```
 
 - Preprocess  
 -E                       Preprocess only; do not compile, assemble or link
