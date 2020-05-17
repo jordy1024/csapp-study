@@ -224,8 +224,8 @@ gcc -S  hello.c -o hello.s
 ```
 gcc -o hello hello.o
 ```
-这一步句生成了最终的计算机可执行文件hello
-让我们来运行一下结果：
+通过最后的link步骤，我们就得到了计算机可执行文件hello
+让我们来运行可执行文件hello看一下输出结果：
 ```
 [root@jordy ~]# ./hello
 hello world
