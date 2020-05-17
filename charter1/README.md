@@ -150,8 +150,9 @@ C语言中包含头文件的一行程序，但计算机才不关心这是C语言
 [root@jordy ~]# ./hello
 hello world 
 ```    
-嗯，这一切看起来很简单呀，用一个-o参数，一步就搞定了。但真相真是如此吗？欲知真相如何，且听下面分解，^_^。 
-gcc --help 
+嗯，这一切看起来很简单呀，用一个-o参数，一步就搞定了。但真相真是如此吗？欲知真相如何，且听下面分解，^_^。      
+首先来简单的学习下gcc的帮助文档：gcc --help     
+
 - Preprocess  
 -E                       Preprocess only; do not compile, assemble or link
 gcc -E  hello.c -o hello.i
@@ -222,6 +223,12 @@ gcc -S  hello.c -o hello.s
 
 ```
 gcc -o hello hello.o
+```
+这一步句生成了最终的计算机可执行文件hello
+让我们来运行一下结果：
+```
+[root@jordy ~]# ./hello
+hello world
 ```
 
 
