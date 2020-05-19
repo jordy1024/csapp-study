@@ -46,6 +46,25 @@ void main(){
 ```
 为什么会这样？？ 
 
+```
+➜  /tmp cat /tmp/ulong.c
+#include<stdio.h>
+#include<limits.h>
+int main(){
+	printf("%d\n",(int)sizeof(long));
+	printf("%d\n",(int)sizeof(long long));
+	printf("%d\n",(int)sizeof(unsigned long long));
+}
+
+
+➜  /tmp gcc -o ulong /tmp/ulong.c
+➜  /tmp
+➜  /tmp ./ulong
+8
+8
+8
+```
+
 ## 2.1信息存储
 ### 2.1.2 字（word）
 通俗地讲，`字`是计算机中一个计量单位，用来表示数据块大小的计量单位。人们为了方便，将这一计量单位的大小简称为`字长`，那到底这个字长是干嘛的？到底多长呢？
