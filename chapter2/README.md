@@ -42,9 +42,15 @@ void main(){
 [root@jordy ~]# 
 [root@jordy ~]# /tmp/limit 
 18446744072824649728
+或者提示
+Overflow in expression; result is -884901888 with type 'int' [-Winteger-overflow]
 
 ```
 为什么会这样？？ 
+https://www.microchip.com/forums/m501193.aspx
+https://blog.csdn.net/qq_30290513/article/details/77948008
+
+
 
 ```
 ➜  /tmp cat /tmp/ulong.c
