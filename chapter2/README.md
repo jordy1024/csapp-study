@@ -144,7 +144,54 @@ unsigned long | 0 | 18 446 744 073 709 551 615
 等下，也许有人已经懵了，通常我们所说的32位，64位，到底是在说什么呀？如何判断一个计算机的硬件（即机器位数或CPU位数）是32位还是64位？    
 又如何判断一个计算机的操作系统是32位还是64位呢？     
 感觉必须要搞清楚这两者，不然n年之后还是很痛苦，因为一直模模糊糊，似懂非懂的状态。     
-下面我们就来做一次老生常谈，婆婆妈妈的透析，让您一次过瘾，一次学个透；            
+下面我们就来做一次老生常谈，婆婆妈妈的透析，让您一次过瘾，一次学个透；  
+
+### 2.1.4多字节对象内存编址与字节排列顺序
+```
+#include<stdio.h>
+typedef unsigned char *byte_pointer;
+
+void show_bytes(byte_pointer start ,int len) {
+    int i;
+    for(i=0;i<len;i++){
+        printf("%.2x",*(start + i));//*(start + i) 等于 start[i]
+    }
+    printf("\n");
+}
+void show_int(int x){
+    show_bytes((byte_pointer)&x,sizeof(int));
+}
+
+void show_float(float x){
+    show_bytes((byte_pointer)&x,sizeof(float));
+}
+
+void show_pointer(void *x){
+    show_bytes((byte_pointer)&x,sizeof(void *));
+}
+
+int main(){
+    int a = 5;
+    show_int(a);
+    float b = 40.2;
+    show_float(b);
+    int *p = &a;
+    show_pointer(p);
+}
+```
+要深入掌握以上的这个经典程序，首先我们来回忆和学习一下C语言的经典知识；   
+- 指针与地址
+- 多字节变量在内存中的存储
+- 获取类型的字节数
+- 语法糖，自定义数据类型的关键字typedef
+
+有了以上的基础知识做铺垫后，下面我们来深入分析下show_bytes的例程；   
+- 一句话功能概述
+- 为什么要转换为char*
+- sizeof的作用
+
+
+
 
 ## 2.2整数表示
 
