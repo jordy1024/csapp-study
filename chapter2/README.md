@@ -189,8 +189,7 @@ int类型在内存中占用4个字节（即32个比特位），那这4个字节�
 在计算机中，不同的硬件或策略决定了在内存上存储这个变量时的字节顺序，我们来举个int的实例。
 比如有一个变量int a = 0 ; 
 那么它在内存中存储时的二进制位就是32位，如[x<sub>31</sub>,x<sub>30</sub>,x<sub>29</sub>,……x<sub>28</sub>]   
-我看到它的最高位的字节对应的8个位分别是[x<sub>31</sub>,x<sub>30</sub>,x<sub>29</sub>,x<sub>28</sub>,x<sub>27</sub>,x<sub>26</sub>,x<sub>25</sub>,x<sub>24</sub>]
-它的最低位的字节对应的8个位分别是[x<sub>7</sub>,x<sub>6</sub>,x<sub>5</sub>,x<sub>4</sub>,x<sub>3</sub>,x<sub>2</sub>,x<sub>1</sub>,x<sub>0</sub>]
+我看到它的最高位的字节对应的8个位分别是[x<sub>31</sub>,x<sub>30</sub>,x<sub>29</sub>,x<sub>28</sub>,x<sub>27</sub>,x<sub>26</sub>,x<sub>25</sub>,x<sub>24</sub>]    它的最低位的字节对应的8个位分别是[x<sub>7</sub>,x<sub>6</sub>,x<sub>5</sub>,x<sub>4</sub>,x<sub>3</sub>,x<sub>2</sub>,x<sub>1</sub>,x<sub>0</sub>]
   
 
 - 获取类型的字节数
