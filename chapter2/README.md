@@ -197,13 +197,98 @@ int类型在内存中占用4个字节（即32个比特位），那这4个字节�
 这就是内存中变量存储的字节顺序的本质。至于哪个叫大端法，哪个叫小端法，如果容易混淆，可以不用过度纠结，重在理解原理。    
 一句话概述：因为不同机器存储数据的字节顺序不同，所以在某些场景下，尤其开发网络应用，就需要可以考虑这个。   
 
-- 获取类型的字节数
-- 语法糖，自定义数据类型的关键字typedef
+- sizeof
+
+在C语言中，我们可以通过sizeof关键字来动态的获取某种数据类型在内存中所占用的字节数目，如：
+```
+int bytes_num_of_int_type = sizeof(int);
+float bytes_num_of_float_type = sizeof(float); 
+```
+
+- typedef语法糖
+
+在C语言中，我们可以用关键字typedef将自建类型或自定义类型重定义为我们自己命名的类型，达到语义上的清晰，举例：
+```
+typedef INT_POINTER int;
+typedef ONLINE_PEOPLE struct OnlinePeople;
+struct OnlinePeople{
+	char *name;
+	int age;
+	int online_status;
+}
+```
 
 有了以上的基础知识做铺垫后，下面我们来深入分析下show_bytes的例程；   
-- 一句话功能概述
+- 一句话功能概述show_bytes程序的功能 
+
+show_bytes可以打印出任何类型的变量在内存中的字节表示（为了方便人类查看，这里是用16进制来表示的，注意，2个16进制字符表示一个字节，即8个bit位）
+
+
 - 为什么要转换为char*
-- sizeof的作用
+
+```
+首先声明清楚下，在C语言中，char类型可以用来存储单个字符，因为单个字符刚好占用一个字节；所以char类型也可以用来定义单个字节的整型变量，如
+//定义一个有符号char变量；取值范围为[-128,127]
+char int_var1 = 127;
+//定义一个无符号char变量；取值范围为[0,255]
+unsigned char int_var2 = 255;
+//说实话，C语言虽然不像Java或Go等语言，用额外的一个关键字byte来声明字节变量或数组，而是直接很省事的用char来表示了占用一个字节的变量；
+//但对于初学者而已，其实很容易搞混或造成难以理解；就如上面的举例中，好多C语言的教材中会将，可以将单个字符存储在char类型的变量中；
+//也可以将单字节的整数存储在char类型的变量中，对于一个初学计算机或编程的人来讲，就会很迷惑，因可以的去区分char到底是字符类型还是整型；
+//因为初学计算机的新手，也许刚好是一位还未来得及了解计算机发展历史、CS课程、以及ASCII编码等知识的人。
+//这是个人观点，仅供参考！ 
+
+```
+- show_bytes的程序中，我们使用sizeof的目的和意义。
+
+因为我们的目的是以字节为单位来遍历性的输出变量的值，所以在打印变量的每个字节前，我们必须要知道这个变量在内存中所占用的字节；
+而每个变量都是对应一个类型的，如整型，浮点型，指针类型void * 等，所以我们就可以用sizeof(type T)来计算出某变量的字节数；  
+
+经过上述的铺垫和深入学习，我相信咱门已经彻底理解了show_bytes程序，下面让我们用一个例子实际的运行一下该程序，如
+```
+#include<stdio.h>
+typedef char* byte_pointer;
+
+void show_bytes(byte_pointer obj,int byte_num){
+        int i;
+        for(i=0;i<byte_num;i++){
+            printf("%.2x",obj[i]);
+        }
+        printf("\n");
+}
+void show_int(int a){
+    show_bytes((byte_pointer)&a,sizeof(int));
+}
+
+void show_float(float f){
+    show_bytes((byte_pointer)&f,sizeof(float));
+}
+
+void show_pointer(void * p){
+    show_bytes((byte_pointer)&p,sizeof(void *));
+}
+int main(){
+    int a = 15;
+    show_int(a);
+
+    float b = (float)a;
+    show_float(b);
+
+    int *p = &a;
+    show_pointer(p);
+}
+
+ gcc -o /tmp/show_byte  /tmp/show_bytes.c
+ 
+ [root@jordy tmp]# /tmp/show_byte 
+0f000000
+00007041
+fffffffc50ffffff88ffffff92fffffffd7f0000
+
+```
+下面让我们来分析以下以上输出结果：
+
+
 
 
 
