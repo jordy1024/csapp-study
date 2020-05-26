@@ -1,3 +1,4 @@
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
 # 信息的表示和处理
 ## 数字表示的基础
 - 无符号编码
