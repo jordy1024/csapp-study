@@ -288,7 +288,83 @@ fffffffc50ffffff88ffffff92fffffffd7f0000
 下面让我们来分析以下以上输出结果：
 
 
+```go
+/*
+0f   00  00  00 -> 00 00 00 0f 
+00  00  70  41  -> 41 70 00 00   
 
+
+00000000 00000000 00000000  00001111
+0100 0001 01110000   00000000  00000000 
+
+
+在语言层面，可以很方便开发者玩转二进制的语言中，go语言的binary包提供的功能相当实用，然后开启愉快的钻研之旅吧。
+https://golang.org/pkg/encoding/binary 
+https://golang.org/pkg/encoding/binary/#ByteOrder 
+A ByteOrder specifies how to convert byte sequences into 16-, 32-, or 64-bit unsigned integers.
+*/
+
+type ByteOrder interface {
+    Uint16([]byte) uint16
+    Uint32([]byte) uint32
+    Uint64([]byte) uint64
+    PutUint16([]byte, uint16)
+    PutUint32([]byte, uint32)
+    PutUint64([]byte, uint64)
+    String() string
+}
+
+Example(Get)
+
+package main
+
+import (
+	"encoding/binary"
+	"fmt"
+)
+
+func main() {
+	b := []byte{0xe8, 0x03, 0xd0, 0x07}
+	x1 := binary.LittleEndian.Uint16(b[0:])
+	x2 := binary.LittleEndian.Uint16(b[2:])
+	fmt.Printf("%#04x %#04x\n", x1, x2)
+}
+
+//Example(Put) 
+
+package main
+
+import (
+	"encoding/binary"
+	"fmt"
+)
+
+func main() {
+	b := make([]byte, 4)
+	binary.LittleEndian.PutUint16(b[0:], 0x03e8)
+	binary.LittleEndian.PutUint16(b[2:], 0x07d0)
+	fmt.Printf("% x\n", b)
+}
+
+
+package main
+
+import (
+    "encoding/binary"
+    "fmt"
+)
+
+func main() {
+    b := []byte{0xe8, 0x03, 0xd0, 0x07}
+    x1 := binary.LittleEndian.Uint16(b[0:])
+    x2 := binary.LittleEndian.Uint16(b[2:])
+    littleEndian := binary.LittleEndian.Uint32(b[0:])
+    bigEndian := binary.BigEndian.Uint32(b[0:])
+    fmt.Printf("%#04x %#04x %#08x %#08x\n", x1, x2, littleEndian, bigEndian)
+}
+
+
+```
 
 
 
