@@ -107,8 +107,11 @@ int main(){
 对于有符号的char[-128,127]：   
 mac上给赋值128，编译或报错的时候就直接提示越界了，  
 但是linux下可以输出结果，本质也是越界了，所以输出-128
-
+```
 我们再来一起看看 linux下的/usr/include/limits.h中的定义
+完整代码见 [limits-h.md](https://github.com/jordy1024/csapp-study/blob/master/chapter2/limits-h.md)
+
+```
 #include <bits/wordsize.h>
 
 /* We don't have #include_next.
