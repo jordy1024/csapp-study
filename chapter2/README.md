@@ -73,6 +73,40 @@ int main(){
 8
 ```
 
+```
+
+➜  tmp cat char.c
+#include<stdio.h>
+int main(){
+	char i = 128;
+	printf("%d\n",i);
+}
+➜  tmp
+➜  tmp gcc -o c char.c
+char.c:3:11: warning: implicit conversion from 'int' to 'char' changes value from 128 to -128 [-Wconstant-conversion]
+        char i = 128;
+             ~   ^~~
+1 warning generated.
+
+
+[root@jordy ~]# gcc -o c /tmp/c.c
+[root@jordy ~]# 
+[root@jordy ~]# cat /tmp/c.c
+#include<stdio.h>
+int main(){
+    char i = 128;
+    printf("%d\n",i);
+}
+[root@jordy ~]# 
+[root@jordy ~]# gcc -o c /tmp/c.c
+[root@jordy ~]# 
+[root@jordy ~]# 
+[root@jordy ~]# ./c
+-128
+
+``` 
+
+
 ## 2.1信息存储
 ### 2.1.2 字（word）
 通俗地讲，`字`是计算机中一个计量单位，用来表示数据块大小的计量单位。人们为了方便，将这一计量单位的大小简称为`字长`，那到底这个字长是干嘛的？到底多长呢？
