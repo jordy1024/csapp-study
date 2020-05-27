@@ -106,8 +106,35 @@ int main(){
 
 对于有符号的char[-128,127]：   
 mac上给赋值128，编译或报错的时候就直接提示越界了，  
-但是linux下竟然可以正常的输出结果. 😁   
+但是linux下可以输出结果，本质也是越界了，所以输出-128
 
+我们再来一起看看 linux下的/usr/include/limits.h中的定义
+#include <bits/wordsize.h>
+
+/* We don't have #include_next.
+   Define ANSI <limits.h> for standard 32-bit words.  */
+
+/* These assume 8-bit `char's, 16-bit `short int's,
+   and 32-bit `int's and `long int's.  */
+
+/* Number of bits in a `char'.  */
+#  define CHAR_BIT  8
+
+/* Minimum and maximum values a `signed char' can hold.  */
+#  define SCHAR_MIN (-128)
+#  define SCHAR_MAX 127
+
+/* Maximum value an `unsigned char' can hold.  (Minimum is 0.)  */
+#  define UCHAR_MAX 255
+
+/* Minimum and maximum values a `char' can hold.  */
+#  ifdef __CHAR_UNSIGNED__
+#   define CHAR_MIN 0
+#   define CHAR_MAX UCHAR_MAX
+#  else
+#   define CHAR_MIN SCHAR_MIN
+#   define CHAR_MAX SCHAR_MAX
+#  endif
 
 ``` 
 
