@@ -437,6 +437,8 @@ func main() {
 
 
 ```
+### 一些额外的参考资料
+[https://songlee24.github.io/2015/05/02/endianess/](https://songlee24.github.io/2015/05/02/endianess/)
 
 
 
