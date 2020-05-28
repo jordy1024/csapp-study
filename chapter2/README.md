@@ -486,6 +486,7 @@ int main(){
 
 
 ### 一些额外的参考资料
+[https://www.jianshu.com/p/e140dedb6422](https://www.jianshu.com/p/e140dedb6422)    
 [https://songlee24.github.io/2015/05/02/endianess/](https://songlee24.github.io/2015/05/02/endianess/)
 
 ### 2.1.5 表示字符串
