@@ -441,6 +441,18 @@ func main() {
 [https://songlee24.github.io/2015/05/02/endianess/](https://songlee24.github.io/2015/05/02/endianess/)
 
 ### 2.1.5 表示字符串
+- ASCII编码 
+
+man ascii（有些机器可能没有安装）
+
+- 什么是二进制安全
+
+主要是针对字符串处理函数而已
+
+举个Redis的字符串的例子
+
+C语言字符串 VS Redis字符串 
+
 
 ### 2.1.6 表示代码
 
