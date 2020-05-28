@@ -482,6 +482,9 @@ int main(){
 
 ```
 
+我们看到，上面分别对多种类型对变量做了字节透析，类型包括整型、整形指针、浮点型、字符串。  
+
+
 ### 一些额外的参考资料
 [https://songlee24.github.io/2015/05/02/endianess/](https://songlee24.github.io/2015/05/02/endianess/)
 
