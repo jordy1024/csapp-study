@@ -435,8 +435,53 @@ func main() {
     fmt.Printf("%#04x %#04x %#08x %#08x\n", x1, x2, littleEndian, bigEndian)
 }
 
+```
+OK，下面我们就写一个完整的例子：   
+```c
+#include<stdio.h>
+#include<string.h>
+typedef char* byte_pointer;
+void show_bytes(byte_pointer start,int byte_num){
+    int i;
+    for(i=0;i<byte_num;i++){
+        printf("%.2x",*(start + i));
+    }
+    printf("\n");
+}
+
+void show_int(int x){
+    show_bytes((byte_pointer)&x,sizeof(int));
+}
+void show_float(float y){
+    show_bytes((byte_pointer)&y,sizeof(float));
+}
+void show_pointer(void * p){
+    show_bytes((byte_pointer)&p,sizeof(void *));
+}
+
+void show_str(char * s){
+    show_bytes((byte_pointer)s,strlen(s));
+}
+
+void test_show_bytes(int x){
+    show_int(x);
+    show_float((float)x);
+    show_pointer(&x);
+}
+
+void test_string_show_bytes(char * s){
+    show_str(s);
+}
+
+int main(){
+    test_show_bytes(12345);
+
+    char *s = "ABCDE";
+    test_string_show_bytes(s);
+}
 
 ```
+
 ### 一些额外的参考资料
 [https://songlee24.github.io/2015/05/02/endianess/](https://songlee24.github.io/2015/05/02/endianess/)
 
