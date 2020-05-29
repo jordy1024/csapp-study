@@ -519,6 +519,20 @@ C语言字符串 VS Redis字符串
 0x98FDECBA  | \|0xFFFFFF00| 0xFFFFFFBA
 
 
+```c
+#include<stdio.h>
+int main(){
+    int a = 0x98FDECBA;
+    int res = (a | 0xffffff00);
+    printf("%x\n",res);
+
+    int res2 = (a & 0xffffff00)  + ~(a & 0xFF);
+    printf("%x\n",res2);
+
+    int res3 = (a & 0xffffff00);
+    printf("%x\n",res3);
+}
+```
 
 ### 2.1.9 C中的逻辑运算
 
