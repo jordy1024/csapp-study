@@ -516,7 +516,7 @@ C语言字符串 VS Redis字符串
 
 源 | 运算 | 目标
 ---|---|---
-0x98FDECBA  | |0xFFFFFF00| 0xFFFFFFBA
+0x98FDECBA  | \|0xFFFFFF00| 0xFFFFFFBA
 
 
 
