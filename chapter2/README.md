@@ -561,6 +561,15 @@ long long [int] | |
 unsigned long long[int] | | 
 
 - 对比Java的整型
+
+Java 除了没有long long 型外，其他的跟64位环境下C整型的范围是一模一样的，如：
+Java整型类型 | 最小值 | 最大值
+---|---|---
+byte | | 
+short | | 
+int | |
+long | |
+
 ### 2.2.2无符号数
 
 ### 2.2.3有符号数
