@@ -566,7 +566,7 @@ unsigned long long[int] | |
 ### 2.2.3有符号数
 - stdint.h（ISO C99标准引入的）明确定义了位长和有/无符号     
 
-代码见[stdint.h]()
+代码见[stdint.h](https://github.com/jordy1024/csapp-study/blob/master/chapter2/stdint-h.md)
 
 go语言的整型
 
