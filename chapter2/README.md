@@ -569,6 +569,21 @@ byte | |
 short | | 
 int | |
 long | |
+基本类型：int 二进制位数：32
+包装类：java.lang.Integer
+最小值：Integer.MIN_VALUE= -2147483648 （-2的31次方）
+最大值：Integer.MAX_VALUE= 2147483647  （2的31次方-1）
+2、
+基本类型：short 二进制位数：16
+包装类：java.lang.Short
+最小值：Short.MIN_VALUE=-32768 （-2的15此方）
+最大值：Short.MAX_VALUE=32767 （2的15次方-1）
+3、
+基本类型：long 二进制位数：64
+包装类：java.lang.Long
+最小值：Long.MIN_VALUE=-9223372036854775808 （-2的63次方）
+最大值：Long.MAX_VALUE=9223372036854775807 （2的63次方-1）
+但是Java没有无符号数，只有有符号数，什么意思 ？我们拿java 的 short类型来分析；
 
 ### 2.2.2无符号数
 
