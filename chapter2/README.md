@@ -585,6 +585,56 @@ long | |
 最大值：Long.MAX_VALUE=9223372036854775807 （2的63次方-1）
 但是Java没有无符号数，只有有符号数，什么意思 ？我们拿java 的 short类型来分析；
 
+```
+public class Test {
+    /*
+    static boolean bool;
+    static byte by;
+    static char ch;
+    static double d;
+    static float f;
+    static int i;
+    static long l;
+    */
+    static short sh = 65535;
+    //static String str; 65535
+
+    //short 最小值是-32768（-2^15）； 最大值是32767（2^15 - 1）；
+
+    public static void main(String[] args) {
+        /*
+        System.out.println("Bool :" + bool);
+        System.out.println("Byte :" + by);
+        System.out.println("Character:" + ch);
+        System.out.println("Double :" + d);
+        System.out.println("Float :" + f);
+        System.out.println("Integer :" + i);
+        System.out.println("Long :" + l);
+        */
+        System.out.println("Short :" + sh);
+        //System.out.println("String :" + str);
+    }
+}
+
+
+➜  tmp javac Test.java
+Test.java:11: 错误: 不兼容的类型: 从int转换到short可能会有损失
+    static short sh = 32768;
+                      ^
+1 个错误
+➜  tmp
+➜  tmp
+➜  tmp
+➜  tmp vim Test.java
+➜  tmp
+➜  tmp javac Test.java
+Test.java:11: 错误: 不兼容的类型: 从int转换到short可能会有损失
+    static short sh = 65535;
+                      ^
+1 个错误
+```
+
+
 ### 2.2.2无符号数
 
 ### 2.2.3有符号数
